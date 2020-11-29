@@ -1,0 +1,75 @@
+{
+  "kind": "collectionType",
+  "collectionName": "doc_templates",
+  "info": {
+    "name": "DocTemplate"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "doc_type": {
+      "type": "enumeration",
+      "enum": [
+        "PDF",
+        "DOC",
+        "HTML"
+      ],
+      "default": "PDF"
+    },
+    "doc_category": {
+      "type": "enumeration",
+      "enum": [
+        "AIA",
+        "FirstWrap",
+        "GrowWrap",
+        "OnePath",
+        "TAL",
+        "Voyage",
+        "Zurich"
+      ],
+      "default": "Zurich"
+    },
+    "doc_name": {
+      "type": "string"
+    },
+    "doc_template": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "files"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "doc_template_image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "metadata_mapping": {
+      "type": "json"
+    },
+    "metadata_mapping_json_file": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "files"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "users": {
+      "plugin": "users-permissions",
+      "collection": "user",
+      "via": "doc_templates",
+      "dominant": true
+    }
+  }
+}
